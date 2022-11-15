@@ -15,7 +15,6 @@ class Generator[F[_]](counter: Counter[F])(implicit F: Sync[F]) {
     value  <- counter.incrementAndGet
     result  = meybuz(value)
     _      <- logger.info(result)
-    _      <- F.delay()
   } yield result
 
   private def meybuz(value: Int): String = (value % 3, value % 5) match {
